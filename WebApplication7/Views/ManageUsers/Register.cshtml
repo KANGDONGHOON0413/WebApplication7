@@ -1,0 +1,28 @@
+﻿@model WebApplication7.Models.User
+
+<h1>회원가입 페이지</h1>
+
+<form class="form-horizental" method="post" asp-controller="ManageUsers" asp-action="Register">
+    
+    <div class="form-group">
+        <label>사용자 id</label>
+        <input asp-for="UserID" type="text" class="form-control" placeholder="아이디 입력" />
+        <span class="alert-danger" asp-validation-for="UserID"></span> <--! span문은 input문 다음에 놓으면 좋다, 검출하려는 asp-for와 같은 변수명을 쓰자></--!>
+    </div>
+    <div class="form-group">
+        <label>사용자 password</label>
+        <input  asp-for="UserPW" type="password" class="form-control" placeholder="비밀번호 입력" />
+        <span class="alert-danger" asp-validation-for="UserPW"></span>
+    </div>
+    <div class="form-group">
+        <label>사용자 phone</label>
+        <input  type="text" class="form-control" placeholder="이름 입력" asp-for="UserPhone" />
+        <span class="alert-danger" asp-validation-for="UserPhone"></span>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <button type="submit" class="btn-primary">submit</button>
+        <a class="btn btn-warning" href="#"> 취소 </a>
+    </div>
+</form>
