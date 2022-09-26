@@ -24,6 +24,15 @@ namespace WebApplication7
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //의존성 주입(DI)
+
+            //session
+            services.AddSession();      // 서비스에 등록함
+
+            //identity
+
+            //web api 관련 기능
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +49,7 @@ namespace WebApplication7
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseSession();           //Application (단위)에서 사용하겠다
             app.UseStaticFiles();
 
             app.UseRouting();

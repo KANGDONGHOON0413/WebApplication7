@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,10 @@ namespace WebApplication7.Controllers
                     //var user = db.Users.FirstOrDefault(A => A.UserID == model.UserID && A.UserPW == model.UserPW); ->메모리를 비효율적으로 사용하게 됨
                     var user = db.Users.FirstOrDefault(A => A.UserID.Equals(model.UserID) && A.UserPW.Equals(model.UserPW));
                     if (!(user is null))
-                    {
+                    {   //로그인에 성공했을 경우
+                        //세션에 사용자 정보를 담아서 전송
+                        // HttpContext.Session.SetInt32(key, value);
+                        HttpContext.Session.SetInt32("USER_LOGIN_KEY", user.UserNo);
                         return RedirectToAction("LoginSuccess", "Home");
                     }
                     else
@@ -73,5 +77,12 @@ namespace WebApplication7.Controllers
             }
             return View(model);
         }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("USER_LOGIN_KEY");
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

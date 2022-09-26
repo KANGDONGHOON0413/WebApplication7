@@ -11,9 +11,9 @@ namespace WebApplication7.Models
     {
         [Key]
         public int NoteNo { get; set; }
-        [Required]
+        [Required(ErrorMessage ="제목을 입력하세요")]
         public string NoteTitle { get; set; }
-        [Required]
+        [Required(ErrorMessage = "내용을 입력하세요")]
         public string NoteContent { get; set; }
         [Required]
         public int UserNo { get; set; }

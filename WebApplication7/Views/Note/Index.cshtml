@@ -1,0 +1,27 @@
+﻿<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var Alist in Model)
+            {
+            <tr>
+                <td>@Alist.NoteNo</td>
+                <td><a asp-controller="Note" asp-action="Detail" asp-route-noteNo="@Alist.NoteNo">@Alist.NoteTitle</a></td>
+                <td>@Alist.UserNo</td>
+            </tr>
+            }
+        
+
+
+    </tbody>
+
+
+</table>
+
+<a class="btn btn-primary" asp-controller="Note" asp-action="Add">게시판 작성</a>

@@ -1,0 +1,30 @@
+﻿@model WebApplication7.Models.Note
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <form class="form-horizontal" method="post" asp-controller="Note" asp-action="Add">
+            <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label>제목</label>
+                <input type="text" class="form-control" asp-for="NoteTitle" />
+                <span class="text-danger" asp-validation-for="NoteTitle"></span>
+            </div>
+            <div class="form-group">
+                <label>내용</label>
+                <textarea class="form-control" type="text" asp-for="NoteContent"></textarea>
+                <span class="text-danger" asp-validation-for="NoteContent"></span>
+            </div>
+            <div class="form-group">
+               <button class="btn-primary" type="submit">저장</button>
+                <a class="btn-danger" asp-action="Index">취소</a>
+            </div>
+
+
+
+        </form>
+
+    </div>
+    <div class="col-lg-4"></div>
+
+
+</div>
