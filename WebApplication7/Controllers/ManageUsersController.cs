@@ -34,10 +34,12 @@ namespace WebApplication7.Controllers
             //validation check
             if (ModelState.IsValid)
             {
-                using var db = new AspnetDBContext();
-                db.Users.Add(model);    //메모리에 추가/적제
-                db.SaveChanges();       //db로 추가/적제
-                return RedirectToAction("Index", "Home");   //Home컨트롤러의 Index액션으로 넘기겠다는 의미이다.
+                using (var db = new AspnetDBContext())
+                {
+                    db.Users.Add(model);    //메모리에 추가/적제
+                    db.SaveChanges();       //db로 추가/적제
+                    return RedirectToAction("Index", "Home");   //Home컨트롤러의 Index액션으로 넘기겠다는 의미이다.
+                }
             }
             
             return View(model);
