@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Http
+@model WebApplication7.Models.ChangePW
+
+@foreach (var Alist in ViewBag.Item)
+{
+    <tr>
+        <td>@Alist.UserID</td>
+        <td>@Alist.UserPW</td>
+        <td>@Alist.UserNo</td>
+    </tr>
+}
+
+
+
+<form asp-controller="ManageUsers" asp-action="MyInfo" method="post">
+    <div class="form-control">
+        <label> 비밀번호 변경 </label>
+        <input type="text" asp-for="PW" />
+        <span asp-validation-for="PW"></span>
+    </div>
+
+    <button type="submit">비밀번호 변경</button>
+</form>

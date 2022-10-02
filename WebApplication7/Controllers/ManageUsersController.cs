@@ -86,5 +86,51 @@ namespace WebApplication7.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+        public IActionResult MyInfo()
+        {
+            if(HttpContext.Session.GetInt32("USER_LOGIN_KEY") == null)
+            {
+                return RedirectToAction("Login", "ManageUsers");
+            }
+            using(var db = new AspnetDBContext())
+            {
+                var lists = from info in db.Users
+                            where info.UserNo == HttpContext.Session.GetInt32("USER_LOGIN_KEY")
+                            select info;
+
+                var item = lists.ToList();
+               
+                    ViewBag.item = item;
+               
+              
+
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult MyInfo(ChangePW models)
+        {
+           if(ModelState.IsValid)
+            {
+                using (var db = new AspnetDBContext())
+                {
+
+                    var result = (from p in db.Users
+                                  where p.UserNo == HttpContext.Session.GetInt32("USER_LOGIN_KEY")
+                                  select p).SingleOrDefault();
+
+                    result.UserPW = models.PW;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+
+
+           }
+                return View(models);
+        }
     }
 }
